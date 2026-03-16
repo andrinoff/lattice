@@ -11,8 +11,8 @@ import (
 	"github.com/floatpane/lattice/pkg/registry"
 	"github.com/floatpane/lattice/pkg/styles"
 
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
+	tea "charm.land/bubbletea/v2"
+	"charm.land/lipgloss/v2"
 )
 
 func init() {
@@ -68,7 +68,7 @@ func fetchWeather(city string) weatherDataMsg {
 	if err != nil {
 		return weatherDataMsg(lipgloss.NewStyle().Foreground(styles.DimText).Render("Could not fetch weather"))
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {

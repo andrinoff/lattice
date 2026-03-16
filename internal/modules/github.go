@@ -12,8 +12,8 @@ import (
 	"github.com/floatpane/lattice/pkg/registry"
 	"github.com/floatpane/lattice/pkg/styles"
 
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
+	tea "charm.land/bubbletea/v2"
+	"charm.land/lipgloss/v2"
 )
 
 func init() {
@@ -110,7 +110,7 @@ func fetchGitHubData(username, token string) githubDataMsg {
 	if err != nil {
 		return githubDataMsg{status: "Network error"}
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	if resp.StatusCode != 200 {
 		return githubDataMsg{status: fmt.Sprintf("HTTP %d", resp.StatusCode)}
