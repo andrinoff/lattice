@@ -1,0 +1,26 @@
+# Lattice — config example
+# Copy to ~/.config/lattice/config.yaml
+
+# Number of columns in the grid layout
+columns: 2
+
+# Modules to display (in order). Remove or reorder as you like.
+modules:
+  - type: greeting
+    # config:
+    #   name: "Your Name"    # or set LATTICE_NAME env var
+
+  - type: clock
+
+  - type: system
+
+  - type: github
+    # config:
+    #   username: "octocat"  # or set GITHUB_USERNAME env var
+    #   token: "ghp_..."     # or set GITHUB_TOKEN env var
+
+  - type: weather
+    # config:
+    #   city: "London"       # or set LATTICE_CITY env var
+
+  - type: uptime
