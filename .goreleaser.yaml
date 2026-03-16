@@ -50,7 +50,7 @@ snapcrafts:
 brews:
   - repository:
       owner: floatpane
-      name: homebrew-tap
+      name: homebrew-lattice
     homepage: https://github.com/floatpane/lattice
     description: A modular terminal dashboard built with Go and Bubble Tea
     license: MIT
