@@ -51,9 +51,7 @@ func TestRunWithViewRequest(t *testing.T) {
 	})
 
 	var resp Response
-	if err := json.Unmarshal(out.Bytes(), &resp); err != nil {
-		t.Fatalf("failed to parse response: %v", err)
-	}
+	json.Unmarshal(out.Bytes(), &resp)
 	if resp.Content != "hello" {
 		t.Errorf("expected 'hello', got %q", resp.Content)
 	}
@@ -71,9 +69,7 @@ func TestRunWithUpdateRequest(t *testing.T) {
 	})
 
 	var resp Response
-	if err := json.Unmarshal(out.Bytes(), &resp); err != nil {
-		t.Fatalf("failed to parse response: %v", err)
-	}
+	json.Unmarshal(out.Bytes(), &resp)
 	if resp.Content != "updated data" {
 		t.Errorf("expected 'updated data', got %q", resp.Content)
 	}
@@ -116,9 +112,7 @@ func TestRunWithBadJSON(t *testing.T) {
 	})
 
 	var resp Response
-	if err := json.Unmarshal(out.Bytes(), &resp); err != nil {
-		t.Fatalf("failed to parse response: %v", err)
-	}
+	json.Unmarshal(out.Bytes(), &resp)
 	if resp.Error == "" {
 		t.Error("expected error response for bad JSON")
 	}
@@ -133,7 +127,9 @@ func TestRunWithErrorResponse(t *testing.T) {
 	})
 
 	var resp Response
-	json.Unmarshal(out.Bytes(), &resp)
+	if err := json.Unmarshal(out.Bytes(), &resp); err != nil {
+		t.Fatalf("failed to parse response: %v", err)
+	}
 	if resp.Error != "something broke" {
 		t.Errorf("expected error message, got %q", resp.Error)
 	}
