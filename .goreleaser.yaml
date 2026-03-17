@@ -16,12 +16,12 @@ builds:
       - -s -w -X main.version={{.Version}} -X main.commit={{.ShortCommit}} -X main.date={{.Date}}
 
 archives:
-  - format: tar.gz
+  - formats: ["tar.gz"]
     name_template: >-
       {{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}
     format_overrides:
       - goos: windows
-        format: zip
+        formats: ["zip"]
 
 snapcrafts:
   - name: lattice
@@ -46,6 +46,7 @@ brews:
   - repository:
       owner: floatpane
       name: homebrew-lattice
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     homepage: https://github.com/floatpane/lattice
     description: A modular terminal dashboard built with Go and Bubble Tea
     license: MIT
@@ -53,7 +54,6 @@ brews:
       bin.install "lattice"
     test: |
       system bin/"lattice", "list"
-    token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
 
 changelog:
   use: github-native
