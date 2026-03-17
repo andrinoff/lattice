@@ -51,7 +51,7 @@ jobs:
   labeler:
     name: Label PR
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request_target'
     permissions:
       contents: read
       pull-requests: write
