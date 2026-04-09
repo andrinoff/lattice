@@ -1,3 +1,5 @@
+<img src="public/logo.jpg" width="256" height="256">
+
 # Lattice
 
 A modular terminal dashboard built with [Bubble Tea](https://github.com/charmbracelet/bubbletea). Lattice ships with a set of built-in modules and supports external plugins written in any language.
